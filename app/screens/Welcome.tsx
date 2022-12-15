@@ -8,7 +8,7 @@
  * @format
  */
 
-import React, {type PropsWithChildren} from 'react';
+import React, {FC, type PropsWithChildren} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -26,6 +26,7 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import {WelcomeScreenProps} from '../navigators/root-navigator';
 
 const Section: React.FC<
   PropsWithChildren<{
@@ -57,7 +58,7 @@ const Section: React.FC<
   );
 };
 
-const App = () => {
+const Welcome: FC<WelcomeScreenProps> = ({navigation}) => {
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
@@ -79,8 +80,13 @@ const App = () => {
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
           <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
+            Go to{' '}
+            <Text
+              style={styles.highlight}
+              onPress={() => navigation.navigate('Counter', {initCounter: 2})}>
+              Counter
+            </Text>{' '}
+            screen
           </Section>
           <Section title="See Your Changes">
             <ReloadInstructions />
@@ -117,4 +123,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default App;
+export default Welcome;
