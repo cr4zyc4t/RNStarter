@@ -1,16 +1,17 @@
-import React, {FC, useCallback, useState} from 'react';
-import {Button, SafeAreaView, Text} from 'react-native';
-import {CounterScreenProps} from '../navigators/root-navigator';
+import React, {FC, useCallback} from "react";
+import {Button, SafeAreaView, Text} from "react-native";
+import {useDispatch} from "react-redux";
 
-const Counter: FC<CounterScreenProps> = ({
-  route: {
-    params: {initCounter},
-  },
-}) => {
-  const [counter, setCounter] = useState(initCounter);
+import {CounterScreenProps} from "../navigators/root-navigator";
+import {useAppSelector} from "../store/reducers";
+import {increase as increaseCounter} from "../store/reducers/counter";
 
-  const increase = useCallback(() => setCounter(c => c + 1), []);
-  const decrease = useCallback(() => setCounter(c => c - 1), []);
+const Counter: FC<CounterScreenProps> = () => {
+  const counter = useAppSelector(state => state.counter.counter);
+  const dispatch = useDispatch();
+
+  const increase = useCallback(() => dispatch(increaseCounter(1)), [dispatch]);
+  const decrease = useCallback(() => dispatch(increaseCounter(-1)), [dispatch]);
 
   return (
     <SafeAreaView>

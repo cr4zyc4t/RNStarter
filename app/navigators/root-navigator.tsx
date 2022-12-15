@@ -1,24 +1,25 @@
-import React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
+import {NavigationContainer} from "@react-navigation/native";
 import {
   createNativeStackNavigator,
   NativeStackScreenProps,
-} from '@react-navigation/native-stack';
-import Welcome from '../screens/Welcome';
-import Counter from '../screens/Counter';
+} from "@react-navigation/native-stack";
+import React from "react";
+
+import Counter from "../screens/Counter";
+import Welcome from "../screens/Welcome";
 
 export type RootStackParamList = {
   Welcome: undefined;
-  Counter: {initCounter: number};
+  Counter: undefined;
 };
 
 export type CounterScreenProps = NativeStackScreenProps<
   RootStackParamList,
-  'Counter'
+  "Counter"
 >;
 export type WelcomeScreenProps = NativeStackScreenProps<
   RootStackParamList,
-  'Welcome'
+  "Welcome"
 >;
 
 const Stack = createNativeStackNavigator<RootStackParamList>();

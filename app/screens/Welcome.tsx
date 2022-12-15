@@ -8,7 +8,7 @@
  * @format
  */
 
-import React, {FC, type PropsWithChildren} from 'react';
+import React, {FC, type PropsWithChildren} from "react";
 import {
   SafeAreaView,
   ScrollView,
@@ -17,23 +17,23 @@ import {
   Text,
   useColorScheme,
   View,
-} from 'react-native';
-
+} from "react-native";
 import {
   Colors,
   DebugInstructions,
   Header,
   LearnMoreLinks,
   ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-import {WelcomeScreenProps} from '../navigators/root-navigator';
+} from "react-native/Libraries/NewAppScreen";
+
+import {WelcomeScreenProps} from "../navigators/root-navigator";
 
 const Section: React.FC<
   PropsWithChildren<{
     title: string;
   }>
 > = ({children, title}) => {
-  const isDarkMode = useColorScheme() === 'dark';
+  const isDarkMode = useColorScheme() === "dark";
   return (
     <View style={styles.sectionContainer}>
       <Text
@@ -59,7 +59,7 @@ const Section: React.FC<
 };
 
 const Welcome: FC<WelcomeScreenProps> = ({navigation}) => {
-  const isDarkMode = useColorScheme() === 'dark';
+  const isDarkMode = useColorScheme() === "dark";
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
@@ -68,7 +68,7 @@ const Welcome: FC<WelcomeScreenProps> = ({navigation}) => {
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+        barStyle={isDarkMode ? "light-content" : "dark-content"}
         backgroundColor={backgroundStyle.backgroundColor}
       />
       <ScrollView
@@ -80,12 +80,12 @@ const Welcome: FC<WelcomeScreenProps> = ({navigation}) => {
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
           <Section title="Step One">
-            Go to{' '}
+            Go to{" "}
             <Text
               style={styles.highlight}
-              onPress={() => navigation.navigate('Counter', {initCounter: 2})}>
+              onPress={() => navigation.navigate("Counter")}>
               Counter
-            </Text>{' '}
+            </Text>{" "}
             screen
           </Section>
           <Section title="See Your Changes">
@@ -111,15 +111,15 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     fontSize: 24,
-    fontWeight: '600',
+    fontWeight: "600",
   },
   sectionDescription: {
     marginTop: 8,
     fontSize: 18,
-    fontWeight: '400',
+    fontWeight: "400",
   },
   highlight: {
-    fontWeight: '700',
+    fontWeight: "700",
   },
 });
 
