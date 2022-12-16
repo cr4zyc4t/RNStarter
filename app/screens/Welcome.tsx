@@ -9,6 +9,7 @@
  */
 
 import React, {FC, type PropsWithChildren} from "react";
+import {useTranslation} from "react-i18next";
 import {
   SafeAreaView,
   ScrollView,
@@ -60,6 +61,7 @@ const Section: React.FC<
 
 const Welcome: FC<WelcomeScreenProps> = ({navigation}) => {
   const isDarkMode = useColorScheme() === "dark";
+  const {t} = useTranslation();
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
@@ -79,6 +81,7 @@ const Welcome: FC<WelcomeScreenProps> = ({navigation}) => {
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
+          <Section title="Welcome">{t("welcome")}</Section>
           <Section title="Step One">
             Go to{" "}
             <Text

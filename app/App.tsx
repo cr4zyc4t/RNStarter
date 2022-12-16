@@ -1,3 +1,4 @@
+import "./i18n";
 import React, {useRef} from "react";
 import {
   initialWindowMetrics,
