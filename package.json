@@ -7,6 +7,7 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
+    "link-asset": "react-native-asset",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx app index.js"
   },
   "dependencies": {
@@ -43,6 +44,7 @@
     "eslint-plugin-import": "^2.26.0",
     "jest": "^26.6.3",
     "metro-react-native-babel-preset": "0.72.3",
+    "react-native-asset": "^2.0.1",
     "react-test-renderer": "18.1.0",
     "typescript": "^4.8.3"
   },

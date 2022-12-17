@@ -1,4 +1,5 @@
 import "./i18n";
+import {NavigationContainer} from "@react-navigation/native";
 import React, {useRef} from "react";
 import {
   initialWindowMetrics,
@@ -16,7 +17,9 @@ export default function App() {
     <SafeAreaProvider initialMetrics={initialWindowMetrics}>
       <Provider store={store.current.store}>
         <PersistGate loading={null} persistor={store.current.persistor}>
-          <RootNavigator />
+          <NavigationContainer>
+            <RootNavigator />
+          </NavigationContainer>
         </PersistGate>
       </Provider>
     </SafeAreaProvider>

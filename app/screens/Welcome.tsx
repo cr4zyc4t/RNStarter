@@ -10,23 +10,18 @@
 
 import React, {FC, type PropsWithChildren} from "react";
 import {useTranslation} from "react-i18next";
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from "react-native";
+import {StyleSheet, useColorScheme, View} from "react-native";
 import {
   Colors,
   DebugInstructions,
-  Header,
+  Header as DemoHeader,
   LearnMoreLinks,
   ReloadInstructions,
 } from "react-native/Libraries/NewAppScreen";
 
+import {Button} from "../elements/Button";
+import {Screen} from "../elements/Screen";
+import {Text} from "../elements/Text";
 import {WelcomeScreenProps} from "../navigators/root-navigator";
 
 const Section: React.FC<
@@ -61,49 +56,51 @@ const Section: React.FC<
 
 const Welcome: FC<WelcomeScreenProps> = ({navigation}) => {
   const isDarkMode = useColorScheme() === "dark";
-  const {t} = useTranslation();
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
+  const {t, i18n} = useTranslation();
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? "light-content" : "dark-content"}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Welcome">{t("welcome")}</Section>
-          <Section title="Step One">
-            Go to{" "}
-            <Text
-              style={styles.highlight}
-              onPress={() => navigation.navigate("Counter")}>
-              Counter
-            </Text>{" "}
-            screen
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+    <Screen
+      preset="scroll"
+      StatusBarProps={{
+        barStyle: isDarkMode ? "light-content" : "dark-content",
+      }}
+      backgroundColor={isDarkMode ? Colors.black : Colors.white}
+      safeAreaEdges={["top"]}>
+      <DemoHeader />
+      <View
+        style={{
+          backgroundColor: isDarkMode ? Colors.black : Colors.white,
+        }}>
+        <Button
+          text="switch language"
+          onPress={() =>
+            i18n.language === "en"
+              ? i18n.changeLanguage("vi")
+              : i18n.changeLanguage("en")
+          }
+        />
+        <Section title="Welcome">{t("welcome")}</Section>
+        <Section title="Step One">
+          Go to{" "}
+          <Text
+            style={styles.highlight}
+            onPress={() => navigation.navigate("Demo")}>
+            Demo
+          </Text>{" "}
+          screen
+        </Section>
+        <Section title="See Your Changes">
+          <ReloadInstructions />
+        </Section>
+        <Section title="Debug">
+          <DebugInstructions />
+        </Section>
+        <Section title="Learn More">
+          Read the docs to discover what to do next:
+        </Section>
+        <LearnMoreLinks />
+      </View>
+    </Screen>
   );
 };
 

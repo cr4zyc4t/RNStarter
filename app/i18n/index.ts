@@ -1,4 +1,4 @@
-import i18n from "i18next";
+import i18n, {StringMap, TOptionsBase} from "i18next";
 import {initReactI18next} from "react-i18next";
 
 import en from "./locales/en.json";
@@ -22,4 +22,9 @@ i18n
     },
   });
 
+export const isRTL = false;
+export const translate = i18n.t;
+
 export default i18n;
+
+export type TXOptions = TOptionsBase & StringMap;

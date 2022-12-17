@@ -1,21 +1,22 @@
-import {NavigationContainer} from "@react-navigation/native";
 import {
   createNativeStackNavigator,
   NativeStackScreenProps,
 } from "@react-navigation/native-stack";
 import React from "react";
 
-import Counter from "../screens/Counter";
+import {Text} from "../elements/Text";
+import Demo from "../screens/Demo";
 import Welcome from "../screens/Welcome";
+import {typography} from "../theme";
 
 export type RootStackParamList = {
   Welcome: undefined;
-  Counter: undefined;
+  Demo: undefined;
 };
 
-export type CounterScreenProps = NativeStackScreenProps<
+export type DemoScreenProps = NativeStackScreenProps<
   RootStackParamList,
-  "Counter"
+  "Demo"
 >;
 export type WelcomeScreenProps = NativeStackScreenProps<
   RootStackParamList,
@@ -26,12 +27,32 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const RootNavigator = () => {
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Welcome">
-        <Stack.Screen name="Welcome" component={Welcome} />
-        <Stack.Screen name="Counter" component={Counter} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Stack.Navigator
+      initialRouteName="Welcome"
+      screenOptions={{
+        headerShown: true,
+        headerBackTitleVisible: false,
+        headerShadowVisible: false,
+        headerTitleStyle: {
+          fontFamily: typography.primary.semiBold,
+        },
+      }}>
+      <Stack.Screen
+        name="Welcome"
+        component={Welcome}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="Demo"
+        component={Demo}
+        options={({navigation}) => ({
+          presentation: "modal",
+          headerLeft: () => (
+            <Text onPress={() => navigation.goBack()}>Back</Text>
+          ),
+        })}
+      />
+    </Stack.Navigator>
   );
 };
 
