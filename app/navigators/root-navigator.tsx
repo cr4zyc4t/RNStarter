@@ -1,22 +1,23 @@
+import {DrawerScreenProps} from "@react-navigation/drawer";
 import {
   createNativeStackNavigator,
   NativeStackScreenProps,
 } from "@react-navigation/native-stack";
 import React from "react";
 
-import {Text} from "../elements/Text";
-import Demo from "../screens/Demo";
 import Welcome from "../screens/Welcome";
 import {typography} from "../theme";
 
+import DrawerNavigator, {DrawerParamList} from "./drawer-navigation";
+
 export type RootStackParamList = {
   Welcome: undefined;
-  Demo: undefined;
+  Drawer: DrawerScreenProps<DrawerParamList>;
 };
 
 export type DemoScreenProps = NativeStackScreenProps<
   RootStackParamList,
-  "Demo"
+  "Drawer"
 >;
 export type WelcomeScreenProps = NativeStackScreenProps<
   RootStackParamList,
@@ -43,13 +44,11 @@ const RootNavigator = () => {
         options={{headerShown: false}}
       />
       <Stack.Screen
-        name="Demo"
-        component={Demo}
-        options={({navigation}) => ({
-          presentation: "modal",
-          headerLeft: () => (
-            <Text onPress={() => navigation.goBack()}>Back</Text>
-          ),
+        name="Drawer"
+        component={DrawerNavigator}
+        options={() => ({
+          // presentation: "modal",
+          headerShown: false,
         })}
       />
     </Stack.Navigator>

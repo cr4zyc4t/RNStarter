@@ -9,7 +9,6 @@
  */
 
 import React, {FC, type PropsWithChildren} from "react";
-import {useTranslation} from "react-i18next";
 import {StyleSheet, useColorScheme, View} from "react-native";
 import {
   Colors,
@@ -19,7 +18,7 @@ import {
   ReloadInstructions,
 } from "react-native/Libraries/NewAppScreen";
 
-import {Button} from "../elements/Button";
+import Lang from "../components/Lang";
 import {Screen} from "../elements/Screen";
 import {Text} from "../elements/Text";
 import {WelcomeScreenProps} from "../navigators/root-navigator";
@@ -56,7 +55,6 @@ const Section: React.FC<
 
 const Welcome: FC<WelcomeScreenProps> = ({navigation}) => {
   const isDarkMode = useColorScheme() === "dark";
-  const {t, i18n} = useTranslation();
 
   return (
     <Screen
@@ -71,21 +69,16 @@ const Welcome: FC<WelcomeScreenProps> = ({navigation}) => {
         style={{
           backgroundColor: isDarkMode ? Colors.black : Colors.white,
         }}>
-        <Button
-          text="switch language"
-          onPress={() =>
-            i18n.language === "en"
-              ? i18n.changeLanguage("vi")
-              : i18n.changeLanguage("en")
-          }
-        />
-        <Section title="Welcome">{t("welcome")}</Section>
+        <Section title="Welcome">
+          <Text tx="welcome" />
+        </Section>
+        <Lang />
         <Section title="Step One">
           Go to{" "}
           <Text
             style={styles.highlight}
-            onPress={() => navigation.navigate("Demo")}>
-            Demo
+            onPress={() => navigation.navigate("Drawer")}>
+            Drawer
           </Text>{" "}
           screen
         </Section>

@@ -1,4 +1,5 @@
 import React from "react";
+import {useTranslation} from "react-i18next";
 import {
   StyleProp,
   Text as RNText,
@@ -6,7 +7,7 @@ import {
   TextStyle,
 } from "react-native";
 
-import {isRTL, translate, TXOptions} from "../i18n";
+import {isRTL, TXOptions} from "../i18n";
 import {colors, typography} from "../theme";
 
 type Sizes = keyof typeof $sizeStyles;
@@ -67,7 +68,8 @@ export function Text(props: TextProps) {
     ...rest
   } = props;
 
-  const i18nText = translate(tx, txOptions);
+  const {t} = useTranslation();
+  const i18nText = t(tx, txOptions);
   const content = i18nText || text || children;
 
   const preset: Presets = $presets[props.preset] ? props.preset : "default";

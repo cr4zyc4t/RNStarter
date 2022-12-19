@@ -5,6 +5,7 @@ import React, {
   useImperativeHandle,
   useRef,
 } from "react";
+import {useTranslation} from "react-i18next";
 import {
   StyleProp,
   TextInput,
@@ -15,7 +16,7 @@ import {
   ViewStyle,
 } from "react-native";
 
-import {isRTL, translate} from "../i18n";
+import {isRTL} from "../i18n";
 import {colors, spacing, typography} from "../theme";
 
 import {Text, TextProps} from "./Text";
@@ -138,8 +139,9 @@ export const TextField = forwardRef(function TextField(
 
   const disabled = TextInputProps.editable === false || status === "disabled";
 
+  const {t} = useTranslation();
   const placeholderContent = placeholderTx
-    ? translate(placeholderTx, placeholderTxOptions)
+    ? t(placeholderTx, placeholderTxOptions)
     : placeholder;
 
   const $containerStyles = [$containerStyleOverride];
@@ -157,9 +159,9 @@ export const TextField = forwardRef(function TextField(
 
   const $inputStyles = [
     $inputStyle,
-    disabled && {color: colors.textDim},
-    isRTL && {textAlign: "right" as TextStyle["textAlign"]},
-    TextInputProps.multiline && {height: "auto"},
+    disabled ? {color: colors.textDim} : undefined,
+    isRTL ? {textAlign: "right" as TextStyle["textAlign"]} : undefined,
+    TextInputProps.multiline ? {height: "auto"} : undefined,
     $inputStyleOverride,
   ];
 

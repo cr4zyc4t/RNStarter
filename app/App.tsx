@@ -1,3 +1,4 @@
+import "react-native-gesture-handler";
 import "./i18n";
 import {NavigationContainer} from "@react-navigation/native";
 import React, {useRef} from "react";

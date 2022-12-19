@@ -23,7 +23,6 @@ i18n
   });
 
 export const isRTL = false;
-export const translate = i18n.t;
 
 export default i18n;
 

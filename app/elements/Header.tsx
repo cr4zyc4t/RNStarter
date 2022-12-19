@@ -1,4 +1,5 @@
 import React, {ReactElement} from "react";
+import {useTranslation} from "react-i18next";
 import {
   StyleProp,
   TextStyle,
@@ -8,7 +9,7 @@ import {
   ViewStyle,
 } from "react-native";
 
-import {isRTL, translate} from "../i18n";
+import {isRTL} from "../i18n";
 import {colors, spacing} from "../theme";
 import {
   ExtendedEdge,
@@ -177,7 +178,9 @@ export function Header(props: HeaderProps) {
 
   const $containerInsets = useSafeAreaInsetsStyle(safeAreaEdges);
 
-  const titleContent = titleTx ? translate(titleTx, titleTxOptions) : title;
+  const {t} = useTranslation();
+
+  const titleContent = titleTx ? t(titleTx, titleTxOptions) : title;
 
   return (
     <View
@@ -242,8 +245,8 @@ function HeaderAction(props: HeaderActionProps) {
     ActionComponent,
     iconColor,
   } = props;
-
-  const content = tx ? translate(tx, txOptions) : text;
+  const {t} = useTranslation();
+  const content = tx ? t(tx, txOptions) : text;
 
   if (ActionComponent) return ActionComponent;
 
