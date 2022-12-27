@@ -3,11 +3,11 @@ import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 const counterSlice = createSlice({
   name: "Counter",
   initialState: {
-    counter: 0,
+    value: 0,
   },
   reducers: {
     increase(state, action: PayloadAction<number>) {
-      state.counter += action.payload;
+      state.value += action.payload;
     },
   },
 });

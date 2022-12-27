@@ -2,13 +2,18 @@ import React, {FC, useState} from "react";
 import {View} from "react-native";
 
 import Counter from "../components/Counter";
+import Counter2 from "../components/Counter2";
 import {Card} from "../elements/Card";
 import {Screen} from "../elements/Screen";
+import {Text} from "../elements/Text";
 import {Toggle} from "../elements/Toggle";
 import {spacing} from "../theme";
 
 const Demo: FC = () => {
   const [toggleVal, setToggle] = useState(false);
+  const usingHermes =
+    typeof HermesInternal === "object" && HermesInternal !== null;
+
   return (
     <Screen backgroundColor="#fff">
       <View
@@ -37,6 +42,13 @@ const Demo: FC = () => {
             shadowRadius: 10,
           }}
         />
+
+        <Counter2 />
+
+        <View>
+          <Text text="UseHermes" />
+          <Text text={usingHermes + ""} />
+        </View>
       </View>
     </Screen>
   );

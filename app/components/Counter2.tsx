@@ -5,7 +5,7 @@ import {useDispatch} from "react-redux";
 import {Button} from "../elements/Button";
 import {Text} from "../elements/Text";
 import {useAppSelector} from "../store/reducers";
-import {increase as increaseCounter} from "../store/reducers/counter";
+import {increase2 as increaseCounter} from "../store/reducers/counter2";
 
 const containerStyle: ViewStyle = {
   flexDirection: "row",
@@ -17,8 +17,8 @@ const buttonStyle: ViewStyle = {
   width: 100,
 };
 
-const Counter: FC = () => {
-  const counter = useAppSelector(state => state.counter.value);
+const Counter2: FC = () => {
+  const counter = useAppSelector(state => state.counter2.value);
   const dispatch = useDispatch();
 
   const increase = useCallback(() => dispatch(increaseCounter(1)), [dispatch]);
@@ -32,4 +32,4 @@ const Counter: FC = () => {
     </View>
   );
 };
-export default Counter;
+export default Counter2;
